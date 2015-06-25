@@ -1,18 +1,70 @@
 extends layout
 
-block content
-  h1 Sign Up
-  form(action="/signup" method="post")
-    label(for="email") Email
-    br
-    input(type="text" id="email" name="email")
-    p
-    label(for="password") Password
-    br
-    input(type="password" id="password" name="password")
-    p
-    label(for="pwconfirm") Password confirmation
-    br
-    input(type="password" id="pwconfirm" name="pwconfirm")
-    p
-    input.button(type="submit" value="Sign Up")
+block content    
+  if loggedin
+    div
+      h1.red YAY!!
+      p You have visited this page #{visits} times.
+      form(action="/logout" method="post")
+        input.button(type="submit" value="Logout")
+          
+  else if error  
+    div
+      h1 Sign Up
+      form(action="/signup" method="post")
+        label(for="email") Email:
+        p
+        input(type="text" id="email" name="email")
+        p
+        label(for="password") Password:
+        p
+        input(type="password" id="password" name="password")
+        p
+        label(for="confirmation") Confirm Password:
+        p
+        input(type="password" id="confirmation" name="confirmation")
+        p
+        input.button(type="submit" value="Sign Up")
+        
+      h1 Log In
+      p(style="color: red") #{error}
+      form(action="/login" method="post")
+        label(for="login_email") Email:
+        p
+        input(type="text" id="login_email" name="login_email")
+        p
+        label(for="login_password") Password:
+        p
+        input(type="password" id="login_password" name="login_password")
+        p
+        input.button(type="submit" value="Log In")
+  else
+    div
+      h1 Sign Up
+      form(action="/signup" method="post")
+        label(for="email") Email:
+        p
+        input(type="text" id="email" name="email")
+        p
+        label(for="password") Password:
+        p
+        input(type="password" id="password" name="password")
+        p
+        label(for="confirmation") Confirm Password:
+        p
+        input(type="password" id="confirmation" name="confirmation")
+        p
+        input.button(type="submit" value="Sign Up")
+        
+      h1 Log In
+      form(action="/login" method="post")
+        label(for="login_email") Email:
+        p
+        input(type="text" id="login_email" name="login_email")
+        p
+        label(for="login_password") Password:
+        p
+        input(type="password" id="login_password" name="login_password")
+        p
+        input.button(type="submit" value="Log In")
+        
